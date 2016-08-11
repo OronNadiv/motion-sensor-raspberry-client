@@ -22,14 +22,13 @@
   },
   "dependencies": {
     "bluebird": "^3",
+    "debug": "^2",
     "diehard": "^1",
     "jwt-generator": "^2",
     "http-as-promised": "^1",
     "moment": ">=2.11.2 <3",
     "pi-gpio": "^0.0.8",
-    "underscore": "^1",
-    "winston": "^2",
-    "winston-daily-rotate-file": "^1"
+    "underscore": "^1"
   },
   "devDependencies": {
     "coveralls": "^2",

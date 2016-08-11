@@ -1,9 +1,6 @@
-const path = require('path')
-const LOG_PREFIX = `"${path.basename(__filename)}":`
-const log = require('./logger')
-const verbose = log.verbose.bind(log, LOG_PREFIX)
-const info = log.info.bind(log, LOG_PREFIX)
-const error = log.error.bind(log, LOG_PREFIX)
+const verbose = require('debug')('ha:sensor:verbose')
+const info = require('debug')('ha:sensor:info')
+const error = require('debug')('ha:sensor:error')
 
 const config = require('./config')
 const diehard = require('diehard')
