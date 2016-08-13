@@ -1,6 +1,6 @@
 const config = require('./config')
 const diehard = require('diehard')
-const LED = require('./led')
+const LED = require('raspberry-pi-led')
 const Promise = require('bluebird')
 const Sensor = require('./sensor')
 

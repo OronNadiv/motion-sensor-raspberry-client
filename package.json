@@ -28,6 +28,7 @@
     "http-as-promised": "^1",
     "moment": ">=2.11.2 <3",
     "pi-gpio": "^0.0.8",
+    "raspberry-pi-led": "^1",
     "underscore": "^1"
   },
   "devDependencies": {
