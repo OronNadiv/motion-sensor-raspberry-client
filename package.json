@@ -24,7 +24,7 @@
     "bluebird": "^3",
     "debug": "^2",
     "diehard": "^1",
-    "jwt-generator": "^2",
+    "jwt-generator": "^2.0.5",
     "http-as-promised": "^1",
     "moment": "^2.11.2",
     "pi-gpio": "^0.0.8",
