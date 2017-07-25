@@ -31,8 +31,8 @@ Please set 'PRIVATE_KEY'.`)
 }
 
 config.serverUrl = process.env.SERVER_URL || (config.production
-    ? null
-    : 'http://localhost:3002')
+  ? null
+  : 'http://localhost:3002')
 
 if (!config.serverUrl) {
   error(`Server URL could not be found in the environment variable.
