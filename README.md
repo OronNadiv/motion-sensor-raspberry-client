@@ -1,5 +1,5 @@
-# Home Automation - Motion Sensor Raspberry Pi Client
-This repository contains the raspberry-pi client for the alarm's motion sensor.
+# Home Automation - Camera Raspberry Pi Client
+This repository contains the raspberry-pi client for the camera.
 
 [![JavaScript Style Guide][standard-image]][standard-url]
 [![Dependencies][dependencies-image]][dependencies-url]
@@ -11,20 +11,18 @@ I suggest you first [read][overview-url] about the different components of the h
 This will help you understand better the general architecture and different functions of the system.
 
 ## Hardware
-* [Raspberry Pi B+ Ultimate Starter](http://www.amazon.com/gp/product/B00LAAZKXQ)
-* [Bell Wires](http://www.amazon.com/Woods-5407-Solid-Twisted-500-Foot/dp/B001735UPY)
-* [Infrared PIR Motion Sensor Detector](http://www.amazon.com/gp/product/B00FDPO9B8)
+\<TODO\>
 
 ## Installation instructions
 Click [here][client-installation-instruction-url] and follow the installation instructions for the raspberry-pi clients.
 
 ## Environment variables (configuration)
-__MOTION\_SENSOR\_LOCATION__ (optional): Physical location of the motion sensor. Example: `Kitchen` Default: `Unknown`  
-__LOGIN\_URL__ (required): url to the [authentication][auth-url] server.  Example: `login.herokuapp.com`  
-__PINS\_CLIENT\_UP__ (optional): GPIO pin (output) that sets to high when client process is running. Default: `none`  
-__PINS\_MOTION\_SENSOR__ (required): GPIO pin (input) of the motion sensor.  
+__LOGIN\_URL__ (required):  url to the [authentication][auth-url] server.  Example: login.herokuapp.com  
+__PINS\_CLIENT\_UP__ (optional): GPIO pin (output) that sets to high when client process is running. Default: none.  
+__PINS\_CONNECTED\_TO\_SERVER__ (optional): GPIO pin (output) that sets to high when client is connected to server. Default: none.  
+__PINS\_TAKING\_PICTURES__ (optional): GPIO pin (output) that sets to high when a request to take a phone has been sent. Default: none.  
 __PRIVATE\_KEY__ (required): Generated private key.  Public key should be shared with the [authentication][auth-url] server. See [here][private-public-keys-url].  
-__SERVER\_URL__ (required): url to the [garage door][garage-url] server. Example: `garage.herokuapp.com`  
+__STORAGE\_URL__ (required): url to the [storage][storage-url] server. Example: `storage.herokuapp.com`
 
 \<TODO\> Circuit Diagram
 
@@ -34,14 +32,14 @@ __SERVER\_URL__ (required): url to the [garage door][garage-url] server. Example
 ### Author
 [Oron Nadiv](https://github.com/OronNadiv) ([oron@nadiv.us](mailto:oron@nadiv.us))
 
-[dependencies-image]: https://david-dm.org/OronNadiv/motion-sensor-raspberry-client/status.svg
-[dependencies-url]: https://david-dm.org/OronNadiv/motion-sensor-raspberry-client
-[dependencies-dev-image]: https://david-dm.org/OronNadiv/motion-sensor-raspberry-client/dev-status.svg
-[dependencies-dev-url]: https://david-dm.org/OronNadiv/motion-sensor-raspberry-client?type=dev
-[travis-image]: http://img.shields.io/travis/OronNadiv/motion-sensor-raspberry-client.svg?style=flat-square
-[travis-url]: https://travis-ci.org/OronNadiv/motion-sensor-raspberry-client
-[coveralls-image]: http://img.shields.io/coveralls/OronNadiv/motion-sensor-raspberry-client.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/OronNadiv/motion-sensor-raspberry-client
+[dependencies-image]: https://david-dm.org/OronNadiv/camera-raspberry-client/status.svg
+[dependencies-url]: https://david-dm.org/OronNadiv/camera-raspberry-client
+[dependencies-dev-image]: https://david-dm.org/OronNadiv/camera-raspberry-client/dev-status.svg
+[dependencies-dev-url]: https://david-dm.org/OronNadiv/camera-raspberry-client?type=dev
+[travis-image]: http://img.shields.io/travis/OronNadiv/camera-raspberry-client.svg?style=flat-square
+[travis-url]: https://travis-ci.org/OronNadiv/camera-raspberry-client
+[coveralls-image]: http://img.shields.io/coveralls/OronNadiv/camera-raspberry-client.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/OronNadiv/camera-raspberry-client
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [standard-url]: http://standardjs.com
 
@@ -55,6 +53,5 @@ __SERVER\_URL__ (required): url to the [garage door][garage-url] server. Example
 [camera-url]: https://github.com/OronNadiv/camera-api
 [garage-url]: https://github.com/OronNadiv/garage-door-api
 [notifications-url]: https://github.com/OronNadiv/notifications-api
-[push-url]: https://github.com/OronNadiv/push-api
 [storage-url]: https://github.com/OronNadiv/storage-api
 [ui-url]: https://github.com/OronNadiv/home-automation-ui
