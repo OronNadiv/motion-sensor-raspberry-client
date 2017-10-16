@@ -7,7 +7,7 @@ const diehard = require('diehard')
 const Promise = require('bluebird')
 const gpio = Promise.promisifyAll(require('pi-gpio'))
 const JWTGenerator = require('jwt-generator')
-const jwtGenerator = new JWTGenerator(config.loginUrl, config.privateKey, true)
+const jwtGenerator = new JWTGenerator({loginUrl: config.loginUrl, privateKey: config.privateKey, useRetry: true})
 const http = require('http-as-promised')
 const url = require('url')
 
@@ -25,8 +25,8 @@ class Sensor {
 
     return Promise
       .resolve(isRetry
-        ? jwtGenerator.makeNewToken('/motions', 'urn:home-automation/alarm')
-        : jwtGenerator.makeToken('/motions', 'urn:home-automation/alarm'))
+        ? jwtGenerator.makeNewToken({subject: '/motions', audience: 'urn:home-automation/alarm'})
+        : jwtGenerator.makeToken({subject: '/motions', audience: 'urn:home-automation/alarm'}))
       .then(token => {
         info('token generated.  token:', !!token)
         return http({
