@@ -7,15 +7,17 @@ const Sensor = require('./sensor')
 class Client {
   constructor () {
     this.sensor = new Sensor(config.location, config.pins.motionSensor)
-    this.ledClientUp = new LED('PIN_CLIENT_UP', config.pins.clientUp)
+    this.ledClientUp = config.pins.clientUp < 0
+      ? null
+      : new LED({name: 'PIN_CLIENT_UP', pin: config.pins.clientUp})
   }
 
   run () {
     const self = this
 
     return Promise
-      .resolve(self.ledClientUp.initialize())
-      .then(() => self.ledClientUp.turnOn())
+      .try(() => self.ledClientUp && self.ledClientUp.initialize())
+      .then(() => self.ledClientUp && self.ledClientUp.turnOn())
       .then(() => self.sensor.open())
       .then(() => self.sensor.monitor())
       .then(() => diehard.listen()) // diehard uses 'this' context.  That is why we have to call it this way.
