@@ -5,6 +5,7 @@ const error = require('debug')('ha:index:error')
 const Client = require('./client')
 const client = new Client()
 const config = require('./config')
+const exit = require('./exit')
 
 Promise
   .resolve(client.run())
@@ -12,7 +13,7 @@ Promise
     'Server URL: ', config.serverUrl))
   .catch(err => {
     error('Error while running client.', err)
-    process.exit(1)
+    return exit(2)
   })
 
 setInterval(() => verbose('memory:', process.memoryUsage()), 1000 * 60 * 5)

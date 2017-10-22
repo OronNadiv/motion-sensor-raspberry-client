@@ -10,6 +10,7 @@ const JWTGenerator = require('jwt-generator')
 const jwtGenerator = new JWTGenerator({loginUrl: config.loginUrl, privateKey: config.privateKey, useRetry: true})
 const http = require('http-as-promised')
 const url = require('url')
+const exit = require('./exit')
 
 class Sensor {
   constructor (location, pin) {
@@ -100,7 +101,7 @@ class Sensor {
         })
         .catch(err => {
           error('Error reading sensor.  Exiting process.  err:', err)
-          process.exit(2)
+          return exit(3)
         })
     }, 1000)
   }
