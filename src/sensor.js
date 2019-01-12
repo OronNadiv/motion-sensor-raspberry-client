@@ -5,7 +5,8 @@ const error = require('debug')('ha:sensor:error')
 const config = require('./config')
 const diehard = require('diehard')
 const Promise = require('bluebird')
-const gpio = Promise.promisifyAll(require('pi-gpio'))
+const gpio = require('rpi-gpio')
+const gpiop = gpio.promise
 const JWTGenerator = require('jwt-generator')
 const jwtGenerator = new JWTGenerator({loginUrl: config.loginUrl, privateKey: config.privateKey, useRetry: true})
 const http = require('http-as-promised')
@@ -58,16 +59,18 @@ class Sensor {
     const self = this
     info('Opening input motion sensor pin.',
       'Pin', self.pin)
-    return Promise
-      .resolve(gpio.openAsync(self.pin, 'input'))
+    return gpiop
+      .setup(self.pin, gpio.DIR_IN)
       .then(() => {
         info('Opened input motion sensor pin. Pin', self.pin)
         diehard.register(done => {
           info('Closing input motion sensor pin. Pin', self.pin)
-          gpio.close(self.pin, () => {
-            info('Closed input motion sensor pin. Pin', self.pin)
-            done()
-          })
+          gpiop
+            .destroy(self.pin)
+            .then(() => {
+              info('Closed input motion sensor pin. Pin', self.pin)
+              done()
+            })
         })
       })
   }
@@ -79,8 +82,8 @@ class Sensor {
     self.isUpdatingServer = false
     setInterval(() => {
       verbose('setInterval called.')
-      Promise
-        .resolve(gpio.readAsync(self.pin))
+      gpiop
+        .read(self.pin)
         .then(isHigh => {
           verbose('isHigh read.  isHigh:', isHigh)
           if (self.lastState === isHigh || self.isUpdatingServer) {
